@@ -1,0 +1,13 @@
+main {
+  min-height: 80vh;
+}
+
+.cardTitle {
+  text-decoration: none;
+
+}
+
+.cardTitle :hover {
+  color: #5DB;
+};
+
