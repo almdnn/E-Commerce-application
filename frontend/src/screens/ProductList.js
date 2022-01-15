@@ -25,7 +25,7 @@ const ProductList = () => {
       {loading ? (
         <Loader />
       ) : error ? (
-        <Message variant='danger'>{error}</Message>
+        <Message variant="danger">{error}</Message>
       ) : (
         <Row className="my-2">
           {products.map((product) => (

@@ -55,6 +55,7 @@ const Cart = ({match, location, history}) => {
                         </Form.Control>
                                   </Col>
                                   <Col md={2}>
+
                                       <Button type='button' variant='light' onClick={() => removeFromCartHandler(item.product)}>
                                           <i className='fas fa-trash'></i>
                                       </Button>
@@ -73,9 +74,11 @@ const Cart = ({match, location, history}) => {
                             ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}
                         </ListGroupItem>
                         <ListGroupItem>
-                            <Button type='button' className='btn-block' disabled={cartItems.length === 0} onClick={checkoutHandler}>
+                        <div className="d-grid gap-2">
+                            <Button type='button' size='lg' className='btn-block' disabled={cartItems.length === 0} onClick={checkoutHandler}>
                                 Proceed to checkout
                             </Button>
+                            </div>
                         </ListGroupItem>
                     </ListGroup>
                 </Card>
