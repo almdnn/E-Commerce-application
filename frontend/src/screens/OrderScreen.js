@@ -16,12 +16,12 @@ const OrderScreen = ({ match, history }) => {
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
 
-  if (!loading) {
+  if(!loading){
     order.itemsPrice = order.orderItems.reduce(
       (acc, item) => acc + item.price * item.qty,
       0
     );
-  }
+   }
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2);
   };
