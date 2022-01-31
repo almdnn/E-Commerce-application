@@ -4,7 +4,9 @@ import { Form, Button, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { getUserDetails, updateUserProfile} from "../actions/userActions";
+import { getUserDetails, updateUserProfile } from "../actions/userActions";
+//import { listMyOrders } from '../actions/orderActions'
+
 import FormContainer from "../components/FormContainer";
 
 const ProfileScreen = ({ history }) => {
@@ -12,7 +14,7 @@ const ProfileScreen = ({ history }) => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState(null)
+  const [message, setMessage] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -22,33 +24,34 @@ const ProfileScreen = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  // const orderListMy = useSelector((state) => state.orderListMy)
+  // const { loading: loadingOrders, error: errorOrders, orders } = orderListMy
+
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
 
-
   useEffect(() => {
     if (!userInfo) {
-      history.push('/login')
+      history.push("/login");
     } else {
-        if(!user.name){
-            dispatch(getUserDetails('profile'))
-        } else {
-            setName(user.name)
-            setEmail(user.email)
-        }
-    }  
+      if (!user.name) {
+        dispatch(getUserDetails("profile"));
+        //dispatch(listMyOrders())
+      } else {
+        setName(user.name);
+        setEmail(user.email);
+      }
+    }
   }, [dispatch, history, userInfo, user]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if(password !== confirmPassword){
-       setMessage('Passwords do not match')
+    if (password !== confirmPassword) {
+      setMessage("Passwords do not match");
     } else {
-        dispatch(updateUserProfile({id: user._id, name, email, password}))
-        setMessage(null)
-       
+      dispatch(updateUserProfile({ id: user._id, name, email, password }));
+      setMessage(null);
     }
-    
   };
 
   return (
@@ -59,7 +62,7 @@ const ProfileScreen = ({ history }) => {
       {success && <Message variant="success">Profile updated</Message>}
       {loading && <Loader />}
       <Form className="my-3" onSubmit={submitHandler}>
-      <Form.Group controlId="name">
+        <Form.Group controlId="name">
           <Form.Label>Name</Form.Label>
           <Form.Control
             type="name"
@@ -101,12 +104,6 @@ const ProfileScreen = ({ history }) => {
           </Button>
         </div>
       </Form>
-
-      <Row className="py-3">
-        <Col>
-          <h2>My Orders</h2>
-        </Col>
-      </Row>
     </FormContainer>
   );
 };

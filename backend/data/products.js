@@ -10,7 +10,7 @@ const products = [
     numReviews: 12,
   },
   {
-    name: "Popular Colorful Shirt",
+    name: "Popular Colorful Shirt JDJDJDJDJDJDJDJDJDJ",
     image: "/images/shirt2.jpg",
     description:
       "Popular Shirt Colorful Vertical Stripe Pattern Button up Regular Fit Short-sleeved Notch Collar Shirt for Men Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.",

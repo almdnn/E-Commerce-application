@@ -37,11 +37,7 @@ const orderSchema = mongoose.Schema({
         update_time: {type: String},
         email_address: {type: String},
     },
-    taxPrice: {
-        type: Number,
-        required: true,
-        default: 0.0
-    },
+    
     shippingPrice: {
         type: Number,
         required: true,
@@ -58,7 +54,7 @@ const orderSchema = mongoose.Schema({
         default: false
     },
     paidAt: {
-        type: Date
+       type: Date
     },
     isDelivered: {
         type: Boolean,
@@ -69,7 +65,7 @@ const orderSchema = mongoose.Schema({
         type: Date
     },
 }, {
-    timestamp: true
+    timestamps: true
 });
 
 const Order = mongoose.model('Order', orderSchema);
