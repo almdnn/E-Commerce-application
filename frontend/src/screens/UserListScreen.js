@@ -4,30 +4,43 @@ import { Table, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { listUsers } from "../actions/userActions";
+import { listUsers, deleteUser } from "../actions/userActions";
 
-const UserListScreen = () => {
+const UserListScreen = ({history}) => {
   const dispatch = useDispatch();
 
  
 
-  const userList = useSelector((state) => state.userlist);
-  const {loading, error, users} = userList
-  console.log(userList)
-  
+  const listOfUsers = useSelector((state) => state.userList);
+  const {loading, error, users} = listOfUsers
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const {userInfo} = userLogin
+
+  const userDelete = useSelector((state) => state.userDelete);
+  const {success: successDelete} = userDelete
+ 
+  
   useEffect(() => {
-   dispatch(listUsers());
-  }, [dispatch]);
+      if(userInfo && userInfo.isAdmin){
+        dispatch(listUsers());
+      } else {
+          history.push('/login')
+      }
+   
+  }, [dispatch, history, userInfo, successDelete]);
 
   const deleteHandler = (id) => {
-      console.log('deleted')
+      if(window.confirm('Are you sure?')){
+        dispatch(deleteUser(id))
+      }
+      
   }
 
   return (
     <>
       <h2>Users</h2>
-      {!loading ? (
+      {loading ? (
         <Loader />
       ) : error ? (
         <Message variant="danger">{error}</Message>
@@ -43,7 +56,7 @@ const UserListScreen = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
+            {users?.map((user) => (
               <tr key={user._id}>
                 <td>{user._id}</td>
                 <td>{user.name}</td>
@@ -52,13 +65,13 @@ const UserListScreen = () => {
                 </td>
                 <td>
                   {user.isAdmin ? (
-                    <i className="fas fa-check" style={{ color: "green" }}></i>
+                    <i className="fas fa-check mx-3" style={{ color: "green" }}></i>
                   ) : (
-                    <i className="fas fa-times" style={{ color: "red" }}></i>
+                    <i className="fas fa-times mx-3" style={{ color: "red" }}></i>
                   )}
                 </td>
                 <td>
-                  <LinkContainer to={`/user/${user._id}/edit`}>
+                  <LinkContainer to={`/admin/user/${user._id}/edit`}>
                     <Button variant="light" className="btn-sm">
                       <i className="fas fa-edit"></i>
                     </Button>
