@@ -191,7 +191,6 @@ export const listUsers = () => async (dispatch, getState) => {
     const {
       userLogin: { userInfo },
     } = getState();
-    
 
     const config = {
       headers: {
@@ -225,7 +224,6 @@ export const deleteUser = (id) => async (dispatch, getState) => {
     const {
       userLogin: { userInfo },
     } = getState();
-    
 
     const config = {
       headers: {
@@ -235,7 +233,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
 
     await axios.delete(`/api/users/${id}`, config);
 
-    dispatch({type: USER_DELETE_SUCCESS});
+    dispatch({ type: USER_DELETE_SUCCESS });
   } catch (error) {
     dispatch({
       type: USER_DELETE_FAIL,
@@ -256,7 +254,6 @@ export const updateUser = (user) => async (dispatch, getState) => {
     const {
       userLogin: { userInfo },
     } = getState();
-    
 
     const config = {
       headers: {
@@ -265,10 +262,10 @@ export const updateUser = (user) => async (dispatch, getState) => {
       },
     };
 
-     const { data } = await axios.put(`/api/users/${user._id}`, user, config);
+    const { data } = await axios.put(`/api/users/${user._id}`, user, config);
 
-    dispatch({type: USER_UPDATE_SUCCESS});
-    dispatch({type: USER_DETAILS_SUCCESS, payload: data})
+    dispatch({ type: USER_UPDATE_SUCCESS });
+    dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
       type: USER_UPDATE_FAIL,
@@ -279,4 +276,3 @@ export const updateUser = (user) => async (dispatch, getState) => {
     });
   }
 };
-
