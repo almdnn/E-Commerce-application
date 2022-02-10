@@ -1,6 +1,9 @@
 import React from "react";
+import { Route } from "react-router-dom";
+
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
+import SearchBox from "./SearchBox";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { logout } from "../actions/userActions";
 
@@ -12,7 +15,6 @@ const Header = () => {
 
   const logoutHandler = () => {
     dispatch(logout());
-   
   };
 
   return (
@@ -21,21 +23,25 @@ const Header = () => {
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>
-              <em style={{ marginLeft: "80px" }}>VINTAGELAND</em>
+              <em style={{ marginLeft: "55px" }}>VINTAGELAND</em>
             </Navbar.Brand>
           </LinkContainer>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
         </Container>
-        <Container>
+
+        <Container className='mx-4'>
           <Navbar.Collapse id="basic-navbar-nav">
+            <Route render={({ history }) => <SearchBox history={history} />} />
+
             <Nav className="m-auto">
               <LinkContainer to="/about">
                 <Nav.Link>About</Nav.Link>
               </LinkContainer>
+
               <LinkContainer to="/cart">
                 <Nav.Link>
-                  <i className="fas fa-shopping-cart mx-2"></i>Cart
+                  Cart <i className="fas fa-shopping-cart mx-2" style={{ marginLeft: "19px" }}></i>
                 </Nav.Link>
               </LinkContainer>
               {userInfo ? (

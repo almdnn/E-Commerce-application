@@ -9,7 +9,14 @@ const About = () => {
         <Image src={logo} alt="poster" fluid />
       </Col>
       <Col>
-        <p><strong>The VINTAGELAND was created as part of my learning process of React and Web Developement in general, and as such it serves solely to present my work.</strong><br/>
+        <p>
+          <strong>
+            Hello! I'm Almedin Alibasic, a software developer with a passion
+            for web development. The VINTAGELAND was created as part of my
+            learning process of React and Web Developement in general, and as
+            such it serves solely to present my work.
+          </strong>
+          <br />
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and

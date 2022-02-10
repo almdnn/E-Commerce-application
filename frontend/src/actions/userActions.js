@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ORDER_DETAILS_RESET } from "../constants/orderConstants";
 import {
   USER_DELETE_FAIL,
   USER_DELETE_REQUEST,
@@ -61,7 +62,10 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 export const logout = () => (dispatch) => {
-  localStorage.removeItem("userInfo");
+  localStorage.removeItem('userInfo')
+  localStorage.removeItem('cartItems')
+  localStorage.removeItem('shippingAddress')
+  localStorage.removeItem('paymentMethod')
   dispatch({
     type: USER_LOGOUT,
   });
@@ -71,6 +75,9 @@ export const logout = () => (dispatch) => {
   dispatch({
     type: USER_LIST_RESET,
   });
+  dispatch({type: ORDER_DETAILS_RESET})
+  document.location.href = '/login'
+
 };
 
 export const register = (name, email, password) => async (dispatch) => {
@@ -276,3 +283,5 @@ export const updateUser = (user) => async (dispatch, getState) => {
     });
   }
 };
+
+
