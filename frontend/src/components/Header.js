@@ -57,7 +57,7 @@ const Header = () => {
               ) : (
                 <LinkContainer to="/login">
                   <Nav.Link>
-                    <i className="fas fa-user-alt mx-2"></i>Sign in
+                    Sign in<i className="fas fa-user-alt mx-2"></i>
                   </Nav.Link>
                 </LinkContainer>
               )}
