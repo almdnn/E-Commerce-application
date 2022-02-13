@@ -30,7 +30,7 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
         </Container>
 
-        <Container className='mx-4'>
+        <Container className="mx-4">
           <Navbar.Collapse id="basic-navbar-nav">
             <Route render={({ history }) => <SearchBox history={history} />} />
 
@@ -41,7 +41,11 @@ const Header = () => {
 
               <LinkContainer to="/cart">
                 <Nav.Link>
-                  Cart <i className="fas fa-shopping-cart mx-2" style={{ marginLeft: "19px" }}></i>
+                  Cart{" "}
+                  <i
+                    className="fas fa-shopping-cart mx-2"
+                    style={{ marginLeft: "19px" }}
+                  ></i>
                 </Nav.Link>
               </LinkContainer>
               {userInfo ? (

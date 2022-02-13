@@ -8,9 +8,9 @@ import Paginate from "../components/Paginate";
 import { listProducts } from "../actions/productActions";
 import ProductCarousel from "../components/ProductCarousel";
 
-const ProductList = ({match}) => {
-  const keyword = match.params.keyword
-  const pageNumber = match.params.pageNumber || 1
+const ProductList = ({ match }) => {
+  const keyword = match.params.keyword;
+  const pageNumber = match.params.pageNumber || 1;
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
@@ -22,25 +22,26 @@ const ProductList = ({match}) => {
 
   return (
     <>
-    {!keyword && <ProductCarousel />}
-      <h3 className="my-3 text-center">
-        <i className="fas fa-arrow-down mx-2"></i>Rare Vintage Designer Products{" "}
-        <i className="fas fa-arrow-down mx-2"></i>
-      </h3>
+      {!keyword && <ProductCarousel />}
+      <h3 className="my-3 text-center">Rare Vintage Designer Products </h3>
       {loading ? (
         <Loader />
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
         <>
-        <Row className="my-2">
-          {products.map((product) => (
-            <Col key={product._id} sm={12} md={6} lg={3} xl={3}>
-              <Product product={product} />
-            </Col>
-          ))}
-        </Row>
-        <Paginate pages={pages} page={page} keyword={keyword ? keyword : ''} />
+          <Row className="my-2">
+            {products.map((product) => (
+              <Col key={product._id} sm={12} md={6} lg={3} xl={3}>
+                <Product product={product} />
+              </Col>
+            ))}
+          </Row>
+          <Paginate
+            pages={pages}
+            page={page}
+            keyword={keyword ? keyword : ""}
+          />
         </>
       )}
     </>
